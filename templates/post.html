@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<hmtl>
+<head>
+	<title>/dev/null</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="screen, projection" />
+</head>
+
+<body id="home">
+	<header id="main-header">
+		<div width="100%">
+			<div id="main-title">
+				<a href="index.html"><h1>home</h1></a>
+			</div>
+		</div>
+		<hr>
+	</header>
+
+	<main>
+		<article>
+	        {% if content %}
+	            {{ content }}
+	        {% else %}
+				<header>
+					<h1>Posts</h1>
+				</header>
+	            <ul>
+	                {% for post in site %}
+	                    {#{% if post != "index" %}#}
+						{% if unlisted.count(post) != 1 %}
+	                    <li><h2><a href="{{ post+'.html' }}">{{ post|title|replace('--', ', ', 1)|replace('-',' ')|replace(' ', '-', 2) }}</a></h2></li>
+	                    {% endif %}
+	                {% endfor %}
+	            </ul>
+	        {% endif %}
+		</article>
+	</main>
+
+	<footer id="main-footer">
+		<hr>
+		<p>&copy Copyright {{ author }} {{ year }}, all rights reserved.</p>
+	</footer>
+</body>
+</hmtl>
